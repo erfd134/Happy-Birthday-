@@ -1473,6 +1473,81 @@ body {
   }
 }
 
+
+
+/* =========================================================
+   PASSWORD GATE (added; existing design unchanged)
+========================================================= */
+.password-screen {
+  position:fixed;
+  inset:0;
+  z-index:2000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:rgba(2,4,10,.97);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+.password-screen.show { display:flex; }
+.password-box {
+  width:min(390px,100%);
+  padding:34px 26px;
+  text-align:center;
+  border:1px solid rgba(202,173,128,.32);
+  border-radius:12px;
+  background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+  box-shadow:0 20px 70px rgba(0,0,0,.55);
+}
+.password-box h2 {
+  margin-bottom:10px;
+  color:var(--cream);
+  font:italic 32px "Cormorant Garamond",Georgia,serif;
+}
+.password-box p {
+  margin-bottom:22px;
+  color:rgba(245,238,230,.65);
+  font:13px "Montserrat",sans-serif;
+  line-height:1.6;
+}
+.password-box input {
+  width:100%;
+  height:48px;
+  padding:0 15px;
+  outline:none;
+  border:1px solid rgba(202,173,128,.4);
+  border-radius:7px;
+  background:rgba(0,0,0,.35);
+  color:#fff;
+  text-align:center;
+  letter-spacing:8px;
+  font:18px "Montserrat",sans-serif;
+}
+.password-box input:focus { border-color:var(--gold-light); }
+.password-box button {
+  width:100%;
+  height:46px;
+  margin-top:14px;
+  border:1px solid rgba(202,173,128,.6);
+  border-radius:7px;
+  background:linear-gradient(135deg,#c8ad82,#a98b60);
+  color:#17120c;
+  font:500 11px "Montserrat",sans-serif;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+.password-box button:disabled { opacity:.45; cursor:not-allowed; }
+.password-attempts {
+  display:block;
+  margin-top:16px;
+  color:rgba(245,238,230,.48);
+  font:10px "Montserrat",sans-serif;
+  letter-spacing:1px;
+}
+.password-locked h2 { color:#d3a0b0; }
+
 </style>
 </head>
 
@@ -1847,6 +1922,28 @@ body {
 
 </div>
 
+<!-- PASSWORD SCREEN -->
+<div class="password-screen" id="passwordScreen">
+  <div class="password-box" id="passwordBox">
+    <h2 id="passwordHeading">A Little Secret</h2>
+    <p id="passwordMessage">The countdown is complete. Enter the password to continue.</p>
+    <form id="passwordForm">
+      <input
+        type="password"
+        id="passwordInput"
+        inputmode="numeric"
+        autocomplete="off"
+        maxlength="4"
+        placeholder="••••"
+        aria-label="Enter password"
+        required
+      >
+      <button type="submit" id="passwordSubmit">Enter</button>
+    </form>
+    <span class="password-attempts" id="passwordAttempts">5 attempts remaining</span>
+  </div>
+</div>
+
 
 <script>
 
@@ -2100,10 +2197,6 @@ const transitionScreen =
   );
 
 
-let redirectStarted =
-  false;
-
-
 /* Number formatting */
 
 function format(number) {
@@ -2115,47 +2208,107 @@ function format(number) {
 
 
 /* =========================================================
-   REDIRECT TO HOME.HTML
+   PASSWORD GATE
 ========================================================= */
 
-function openBirthdayWebsite() {
+const passwordScreen = document.getElementById("passwordScreen");
+const passwordForm = document.getElementById("passwordForm");
+const passwordInput = document.getElementById("passwordInput");
+const passwordSubmit = document.getElementById("passwordSubmit");
+const passwordAttempts = document.getElementById("passwordAttempts");
+const passwordHeading = document.getElementById("passwordHeading");
+const passwordMessage = document.getElementById("passwordMessage");
+const passwordBox = document.getElementById("passwordBox");
 
+const correctPassword = "1604";
+const lockStorageKey = "missUswaWebsiteLocked";
+const attemptsStorageKey = "missUswaWrongAttempts";
 
-  if (redirectStarted) {
+let redirectStarted = false;
+let wrongAttempts = Number(localStorage.getItem(attemptsStorageKey) || 0);
+
+function showLockedScreen() {
+  passwordScreen.classList.add("show");
+  passwordBox.classList.add("password-locked");
+  passwordHeading.textContent = "Website Locked";
+  passwordMessage.textContent = "Too many incorrect password attempts. Access to this website is locked.";
+  passwordInput.disabled = true;
+  passwordSubmit.disabled = true;
+  passwordAttempts.textContent = "ACCESS LOCKED";
+}
+
+function showPasswordScreen() {
+  if (localStorage.getItem(lockStorageKey) === "true") {
+    showLockedScreen();
     return;
   }
 
-
-  redirectStarted =
-    true;
-
-
-  /*
-     First show cinematic black transition.
-  */
-
-  transitionScreen
-    .classList
-    .add("show");
-
-
-  /*
-     Then automatically open home.html.
-
-     home.html must be in the SAME folder
-     as index.html.
-  */
-
-  setTimeout(() => {
-
-    window.location.replace(
-      "home.html"
-    );
-
-  }, 1800);
-
+  passwordScreen.classList.add("show");
+  passwordInput.focus();
+  updateAttemptsText();
 }
 
+function updateAttemptsText() {
+  const remaining = Math.max(0, 5 - wrongAttempts);
+  passwordAttempts.textContent = remaining + " attempt" + (remaining === 1 ? "" : "s") + " remaining";
+}
+
+function openBirthdayWebsite() {
+  if (redirectStarted) return;
+  redirectStarted = true;
+
+  transitionScreen.classList.add("show");
+
+  setTimeout(() => {
+    showPasswordScreen();
+    transitionScreen.classList.remove("show");
+  }, 1800);
+}
+
+passwordForm.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  if (localStorage.getItem(lockStorageKey) === "true") {
+    showLockedScreen();
+    return;
+  }
+
+  if (passwordInput.value === correctPassword) {
+    passwordSubmit.disabled = true;
+    passwordInput.disabled = true;
+    transitionScreen.classList.add("show");
+
+    setTimeout(() => {
+      window.location.replace("home.html");
+    }, 900);
+
+    return;
+  }
+
+  wrongAttempts++;
+  localStorage.setItem(attemptsStorageKey, String(wrongAttempts));
+
+  if (navigator.vibrate) {
+    navigator.vibrate([180, 90, 180]);
+  }
+
+  passwordInput.value = "";
+  passwordInput.focus();
+
+  if (wrongAttempts >= 5) {
+    localStorage.setItem(lockStorageKey, "true");
+    alert("Wrong password! You have used all 5 attempts. Website locked.");
+    showLockedScreen();
+    return;
+  }
+
+  updateAttemptsText();
+  alert("Wrong password! Please try again. " + (5 - wrongAttempts) + " attempts remaining.");
+});
+
+if (localStorage.getItem(lockStorageKey) === "true") {
+  showLockedScreen();
+}
 
 /* =========================================================
    UPDATE COUNTDOWN
