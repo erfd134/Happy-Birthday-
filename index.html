@@ -1,0 +1,2325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" href="favicon.png">
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+>
+
+<meta name="theme-color" content="#02040a">
+
+<title>A Special Day Is Coming...</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap"
+  rel="stylesheet"
+>
+
+<style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root {
+  --night:#02040a;
+  --night2:#06101b;
+
+  --cream:#f5eee8;
+  --muted:#aeb5bf;
+
+  --rose:#d3a0b0;
+  --rose-soft:#e3b5c2;
+
+  --gold:#c8ad82;
+  --gold-light:#e0c99f;
+}
+
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,
+body {
+  width:100%;
+  height:100%;
+}
+
+html {
+  background:var(--night);
+}
+
+body {
+  overflow:hidden;
+
+  font-family:"Montserrat",sans-serif;
+
+  color:white;
+  background:var(--night);
+
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.hero {
+  position:relative;
+
+  width:100%;
+  height:100vh;
+  height:100svh;
+
+  min-height:580px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  overflow:hidden;
+  isolation:isolate;
+
+  background:
+
+    radial-gradient(
+      ellipse at 50% -8%,
+      rgba(76,108,153,.19),
+      transparent 43%
+    ),
+
+    radial-gradient(
+      ellipse at 80% 25%,
+      rgba(60,82,116,.12),
+      transparent 30%
+    ),
+
+    linear-gradient(
+      180deg,
+      #020712 0%,
+      #06101c 39%,
+      #080c14 66%,
+      #0c090d 84%,
+      #030305 100%
+    );
+}
+
+
+/* =========================================================
+   SKY
+========================================================= */
+
+.sky-glow {
+  position:absolute;
+  inset:0;
+
+  z-index:-10;
+
+  background:
+
+    radial-gradient(
+      circle at 75% 18%,
+      rgba(160,195,233,.09),
+      transparent 19%
+    ),
+
+    radial-gradient(
+      ellipse at 50% 48%,
+      transparent 20%,
+      rgba(0,0,0,.16) 100%
+    );
+}
+
+
+/* =========================================================
+   STAR FIELD
+========================================================= */
+
+#stars {
+  position:absolute;
+  inset:0;
+
+  z-index:-9;
+}
+
+.star {
+  position:absolute;
+
+  border-radius:50%;
+
+  background:var(--color);
+
+  opacity:var(--opacity);
+
+  box-shadow:
+    0 0 var(--glow) var(--color);
+
+  animation:
+    twinkle var(--duration)
+    ease-in-out infinite;
+
+  animation-delay:var(--delay);
+}
+
+@keyframes twinkle {
+
+  0%,
+  100% {
+    opacity:calc(var(--opacity) * .5);
+    transform:scale(.75);
+  }
+
+  50% {
+    opacity:var(--opacity);
+    transform:scale(1.12);
+  }
+}
+
+
+/* bright stars */
+
+.star.bright::before,
+.star.bright::after {
+  content:"";
+
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  transform:translate(-50%,-50%);
+
+  background:var(--color);
+
+  opacity:.24;
+}
+
+.star.bright::before {
+  width:1px;
+  height:10px;
+}
+
+.star.bright::after {
+  width:10px;
+  height:1px;
+}
+
+
+/* =========================================================
+   SHOOTING STAR
+========================================================= */
+
+.shooting-star {
+  position:absolute;
+
+  left:-20%;
+  top:20%;
+
+  width:130px;
+  height:1px;
+
+  z-index:-8;
+
+  opacity:0;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(217,230,247,.3),
+      rgba(255,255,255,.9)
+    );
+
+  transform:rotate(-16deg);
+
+  animation:shoot 14s linear infinite;
+}
+
+.shooting-star.two {
+  top:36%;
+  animation-delay:8s;
+  animation-duration:18s;
+}
+
+@keyframes shoot {
+
+  0%,
+  74% {
+    opacity:0;
+    transform:
+      translate(0,0)
+      rotate(-16deg);
+  }
+
+  76% {
+    opacity:.7;
+  }
+
+  83% {
+    opacity:0;
+
+    transform:
+      translate(125vw,180px)
+      rotate(-16deg);
+  }
+
+  100% {
+    opacity:0;
+  }
+}
+
+
+/* =========================================================
+   MOON
+========================================================= */
+
+.moon-wrap {
+  position:absolute;
+
+  top:7%;
+  right:10%;
+
+  width:110px;
+  height:110px;
+
+  z-index:-7;
+}
+
+.moon-aura {
+  position:absolute;
+
+  inset:-100px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(175,207,240,.13),
+      rgba(104,147,195,.055) 35%,
+      transparent 66%
+    );
+
+  filter:blur(12px);
+}
+
+.moon {
+  position:absolute;
+  inset:0;
+
+  border-radius:50%;
+
+  background:
+
+    radial-gradient(
+      circle at 30% 25%,
+      rgba(111,124,142,.17) 0 7%,
+      transparent 8%
+    ),
+
+    radial-gradient(
+      circle at 67% 37%,
+      rgba(108,120,139,.16) 0 9%,
+      transparent 10%
+    ),
+
+    radial-gradient(
+      circle at 46% 68%,
+      rgba(108,120,138,.12) 0 12%,
+      transparent 13%
+    ),
+
+    radial-gradient(
+      circle at 40% 38%,
+      #fafbf8 0%,
+      #e9edef 40%,
+      #c7cfd4 72%,
+      #9ba8b0 100%
+    );
+
+  box-shadow:
+    0 0 15px rgba(230,241,249,.65),
+    0 0 40px rgba(171,202,232,.27),
+    0 0 100px rgba(100,145,194,.12);
+}
+
+
+/* =========================================================
+   CLOUDS
+========================================================= */
+
+.cloud {
+  position:absolute;
+
+  z-index:-8;
+
+  height:40px;
+
+  border-radius:50%;
+
+  background:#8291a5;
+
+  opacity:.055;
+
+  filter:blur(13px);
+}
+
+.cloud.one {
+  width:300px;
+
+  top:21%;
+  left:-100px;
+
+  animation:cloudOne 38s linear infinite;
+}
+
+.cloud.two {
+  width:360px;
+
+  top:32%;
+  right:-130px;
+
+  animation:cloudTwo 48s linear infinite;
+}
+
+@keyframes cloudOne {
+  to {
+    transform:translateX(430px);
+  }
+}
+
+@keyframes cloudTwo {
+  to {
+    transform:translateX(-480px);
+  }
+}
+
+
+/* =========================================================
+   MOUNTAINS
+========================================================= */
+
+.landscape {
+  position:absolute;
+
+  left:0;
+  right:0;
+  bottom:0;
+
+  height:40%;
+
+  z-index:-6;
+}
+
+.mountain-back {
+  position:absolute;
+
+  left:0;
+  bottom:10%;
+
+  width:100%;
+  height:75%;
+
+  background:#09101a;
+
+  opacity:.75;
+
+  clip-path:polygon(
+    0 74%,
+    8% 63%,
+    17% 70%,
+    26% 38%,
+    36% 68%,
+    44% 50%,
+    54% 70%,
+    64% 34%,
+    73% 62%,
+    82% 45%,
+    92% 68%,
+    100% 55%,
+    100% 100%,
+    0 100%
+  );
+}
+
+.mountain-front {
+  position:absolute;
+
+  left:0;
+  bottom:0;
+
+  width:100%;
+  height:62%;
+
+  background:
+    linear-gradient(
+      180deg,
+      #080c12,
+      #030405
+    );
+
+  clip-path:polygon(
+    0 65%,
+    11% 50%,
+    20% 72%,
+    31% 55%,
+    42% 74%,
+    53% 58%,
+    63% 72%,
+    75% 51%,
+    86% 70%,
+    100% 49%,
+    100% 100%,
+    0 100%
+  );
+}
+
+
+/* =========================================================
+   DISTANT LIGHTS
+========================================================= */
+
+#city {
+  position:absolute;
+
+  left:0;
+  right:0;
+  bottom:13%;
+
+  height:65px;
+
+  z-index:-4;
+}
+
+.city-light {
+  position:absolute;
+
+  width:2px;
+  height:2px;
+
+  border-radius:50%;
+
+  background:#d3aa72;
+
+  box-shadow:
+    0 0 5px rgba(211,170,114,.6);
+}
+
+
+/* =========================================================
+   FLOOR
+========================================================= */
+
+.floor {
+  position:absolute;
+
+  left:-5%;
+  bottom:-18%;
+
+  width:110%;
+  height:34%;
+
+  z-index:-3;
+
+  transform:
+    perspective(700px)
+    rotateX(61deg);
+
+  transform-origin:bottom;
+
+  background:
+
+    linear-gradient(
+      rgba(255,255,255,.014) 1px,
+      transparent 1px
+    ),
+
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.014) 1px,
+      transparent 1px
+    ),
+
+    linear-gradient(
+      #0d0b0d,
+      #040405
+    );
+
+  background-size:
+    90px 70px,
+    90px 70px,
+    auto;
+}
+
+
+/* =========================================================
+   DECORATIVE PLANTS
+========================================================= */
+
+.plant {
+  position:absolute;
+
+  bottom:-15px;
+
+  width:260px;
+  height:310px;
+
+  z-index:2;
+
+  pointer-events:none;
+}
+
+.plant.left {
+  left:-65px;
+}
+
+.plant.right {
+  right:-65px;
+  transform:scaleX(-1);
+}
+
+.branch {
+  position:absolute;
+
+  left:70px;
+  bottom:0;
+
+  width:7px;
+  height:300px;
+
+  border-radius:100%;
+
+  background:#10150f;
+
+  transform:rotate(31deg);
+}
+
+.leaf {
+  position:absolute;
+
+  width:46px;
+  height:20px;
+
+  border-radius:
+    100% 0 100% 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      #26301f,
+      #090d09
+    );
+
+  box-shadow:
+    0 6px 15px rgba(0,0,0,.6);
+}
+
+.rose {
+  position:absolute;
+
+  width:44px;
+  height:44px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      #c8738c 0 8%,
+      #a24964 9% 22%,
+      #71263f 23% 39%,
+      #451426 40% 56%,
+      #200a12 57% 67%,
+      transparent 69%
+    );
+
+  filter:
+    drop-shadow(0 5px 10px rgba(0,0,0,.75));
+}
+
+
+/* =========================================================
+   LANTERN
+========================================================= */
+
+.lantern {
+  position:absolute;
+
+  bottom:6%;
+
+  width:45px;
+  height:72px;
+
+  z-index:3;
+
+  border:1px solid #463725;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(14,11,8,.95),
+      rgba(37,27,18,.45),
+      rgba(14,11,8,.95)
+    );
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.7);
+}
+
+.lantern.left {
+  left:5%;
+}
+
+.lantern.right {
+  right:5%;
+}
+
+.lantern::before {
+  content:"";
+
+  position:absolute;
+
+  top:-14px;
+  left:9px;
+  right:9px;
+
+  height:14px;
+
+  border:
+    1px solid #4c3b28;
+
+  border-bottom:0;
+
+  border-radius:
+    30px 30px 0 0;
+}
+
+.flame {
+  position:absolute;
+
+  left:50%;
+  bottom:12px;
+
+  width:11px;
+  height:25px;
+
+  transform:translateX(-50%);
+
+  border-radius:
+    60% 60% 45% 45%;
+
+  background:
+    radial-gradient(
+      ellipse at bottom,
+      #fff0b6 0%,
+      #e5ad5b 31%,
+      #b85e27 58%,
+      transparent 72%
+    );
+
+  box-shadow:
+    0 0 8px rgba(231,165,84,.6),
+    0 0 20px rgba(211,111,46,.28);
+
+  animation:
+    flame 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes flame {
+
+  from {
+    transform:
+      translateX(-50%)
+      scale(.91);
+  }
+
+  to {
+    transform:
+      translateX(-50%)
+      scale(1.06)
+      rotate(1deg);
+  }
+}
+
+
+/* =========================================================
+   CENTER CONTENT
+========================================================= */
+
+.content {
+  position:relative;
+
+  z-index:10;
+
+  width:min(850px,92%);
+
+  text-align:center;
+
+  transform:translateY(-2px);
+}
+
+.eyebrow {
+  margin-bottom:14px;
+
+  font-size:8px;
+
+  letter-spacing:6px;
+
+  text-transform:uppercase;
+
+  color:
+    rgba(220,207,199,.55);
+
+  animation:
+    fadeUp .9s ease both;
+}
+
+.title {
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(51px,5.7vw,84px);
+
+  line-height:.88;
+
+  font-style:italic;
+
+  font-weight:400;
+
+  letter-spacing:-1.3px;
+
+  color:var(--cream);
+
+  text-shadow:
+    0 6px 30px rgba(0,0,0,.65);
+
+  animation:
+    fadeUp 1.25s ease both;
+}
+
+.title span {
+  font-family:
+    "Great Vibes",
+    cursive;
+
+  font-style:normal;
+
+  font-size:1.08em;
+
+  color:var(--rose-soft);
+}
+
+
+/* ornament */
+
+.ornament {
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:11px;
+
+  margin:20px 0 13px;
+}
+
+.ornament-line {
+  width:55px;
+  height:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(202,173,128,.5)
+    );
+}
+
+.ornament-line.right {
+  transform:scaleX(-1);
+}
+
+.diamond {
+  width:5px;
+  height:5px;
+
+  border:
+    1px solid rgba(220,190,143,.65);
+
+  transform:rotate(45deg);
+}
+
+.subtitle {
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size:
+    clamp(17px,1.7vw,21px);
+
+  letter-spacing:1.6px;
+
+  color:
+    rgba(245,238,230,.72);
+}
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+.timer {
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:10px;
+
+  width:min(515px,100%);
+
+  margin:28px auto 0;
+}
+
+.timer-card {
+  position:relative;
+
+  height:102px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+  justify-content:center;
+
+  overflow:hidden;
+
+  border:
+    1px solid rgba(202,173,128,.25);
+
+  border-radius:9px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.05),
+      rgba(255,255,255,.012)
+    );
+
+  backdrop-filter:blur(14px);
+
+  -webkit-backdrop-filter:blur(14px);
+
+  box-shadow:
+    inset 0 1px rgba(255,255,255,.06),
+    0 15px 40px rgba(0,0,0,.3);
+
+  transition:
+    transform .35s ease,
+    border-color .35s ease;
+}
+
+.timer-card::before {
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:18%;
+  right:18%;
+
+  height:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(224,201,159,.55),
+      transparent
+    );
+}
+
+.timer-card:hover {
+  transform:translateY(-4px);
+
+  border-color:
+    rgba(218,188,144,.45);
+}
+
+.number {
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size:
+    clamp(34px,3vw,43px);
+
+  font-weight:500;
+
+  line-height:1;
+
+  color:#dfafbd;
+
+  font-variant-numeric:
+    tabular-nums;
+}
+
+.label {
+  margin-top:9px;
+
+  font-size:7px;
+
+  letter-spacing:2.2px;
+
+  text-transform:uppercase;
+
+  color:
+    rgba(255,255,255,.4);
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+.date-row {
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:13px;
+
+  margin-top:25px;
+}
+
+.date-line {
+  width:52px;
+  height:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(202,173,128,.35)
+    );
+}
+
+.date-line.right {
+  transform:scaleX(-1);
+}
+
+.date {
+  white-space:nowrap;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size:15px;
+
+  letter-spacing:3px;
+
+  color:
+    rgba(242,228,215,.83);
+}
+
+.heart {
+  margin-right:7px;
+
+  color:#cb8ea2;
+}
+
+
+/* =========================================================
+   QUOTE
+========================================================= */
+
+.quote {
+  max-width:520px;
+
+  margin:19px auto 0;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size:15px;
+
+  line-height:1.5;
+
+  font-style:italic;
+
+  color:
+    rgba(255,255,255,.41);
+}
+
+.quote span {
+  color:
+    rgba(218,172,187,.78);
+}
+
+
+/* =========================================================
+   FINAL SECONDS OVERLAY
+========================================================= */
+
+.transition-screen {
+  position:fixed;
+
+  inset:0;
+
+  z-index:1000;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  pointer-events:none;
+
+  opacity:0;
+
+  background:#020204;
+
+  transition:opacity 1.2s ease;
+}
+
+.transition-screen.show {
+  opacity:1;
+}
+
+.transition-text {
+  opacity:0;
+
+  transform:translateY(10px);
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size:
+    clamp(22px,4vw,40px);
+
+  font-style:italic;
+
+  letter-spacing:2px;
+
+  color:#eee4dc;
+
+  transition:
+    opacity .8s ease,
+    transform .8s ease;
+}
+
+.transition-screen.show .transition-text {
+  opacity:1;
+
+  transform:translateY(0);
+}
+
+
+/* =========================================================
+   VIGNETTE
+========================================================= */
+
+.vignette {
+  position:absolute;
+
+  inset:0;
+
+  z-index:5;
+
+  pointer-events:none;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.5),
+      transparent 18%,
+      transparent 82%,
+      rgba(0,0,0,.5)
+    ),
+
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.06),
+      transparent 58%,
+      rgba(0,0,0,.48)
+    );
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes fadeUp {
+
+  from {
+    opacity:0;
+
+    transform:
+      translateY(18px);
+
+    filter:blur(3px);
+  }
+
+  to {
+    opacity:1;
+
+    transform:none;
+
+    filter:blur(0);
+  }
+}
+
+
+/* =========================================================
+   SAMSUNG GALAXY / MOBILE
+========================================================= */
+
+@media(max-width:600px) {
+
+  .hero {
+    min-height:100svh;
+  }
+
+  .content {
+    width:
+      calc(100% - 30px);
+
+    transform:
+      translateY(-3px);
+  }
+
+  .moon-wrap {
+    width:70px;
+    height:70px;
+
+    top:6%;
+    right:7%;
+  }
+
+  .eyebrow {
+    font-size:7px;
+
+    letter-spacing:3.8px;
+  }
+
+  .title {
+    font-size:
+      clamp(44px,13vw,57px);
+
+    line-height:.93;
+  }
+
+  .subtitle {
+    font-size:16px;
+  }
+
+  .ornament {
+    margin:
+      17px 0 12px;
+  }
+
+  .timer {
+    gap:6px;
+
+    margin-top:24px;
+  }
+
+  .timer-card {
+    height:84px;
+
+    border-radius:7px;
+  }
+
+  .number {
+    font-size:
+      clamp(27px,8vw,34px);
+  }
+
+  .label {
+    margin-top:7px;
+
+    font-size:6px;
+
+    letter-spacing:
+      clamp(.6px,.3vw,1.3px);
+  }
+
+  .date-row {
+    gap:8px;
+
+    margin-top:20px;
+  }
+
+  .date-line {
+    width:24px;
+  }
+
+  .date {
+    font-size:12.5px;
+
+    letter-spacing:1.7px;
+  }
+
+  .quote {
+    width:90%;
+
+    font-size:14px;
+
+    margin-top:16px;
+  }
+
+  .plant.left {
+    left:-135px;
+
+    opacity:.65;
+  }
+
+  .plant.right {
+    right:-135px;
+
+    opacity:.65;
+  }
+
+  .lantern {
+    transform:scale(.72);
+
+    bottom:3%;
+  }
+
+  .lantern.left {
+    left:2%;
+  }
+
+  .lantern.right {
+    right:2%;
+  }
+}
+
+
+/* Galaxy A/S narrow screens */
+
+@media(max-width:380px) {
+
+  .content {
+    width:
+      calc(100% - 20px);
+  }
+
+  .title {
+    font-size:42px;
+  }
+
+  .timer {
+    gap:5px;
+  }
+
+  .timer-card {
+    height:76px;
+  }
+
+  .number {
+    font-size:27px;
+  }
+
+  .label {
+    font-size:5px;
+
+    letter-spacing:.6px;
+  }
+
+  .date {
+    font-size:11.5px;
+
+    letter-spacing:1.2px;
+  }
+
+  .date-line {
+    width:13px;
+  }
+
+  .quote {
+    font-size:13px;
+  }
+}
+
+
+/* Galaxy Fold / ultra narrow */
+
+@media(max-width:320px) {
+
+  .title {
+    font-size:38px;
+  }
+
+  .timer-card {
+    height:70px;
+  }
+
+  .number {
+    font-size:24px;
+  }
+
+  .label {
+    font-size:4.8px;
+  }
+
+  .date {
+    font-size:10.5px;
+  }
+}
+
+
+/* short screens */
+
+@media(max-width:600px) and (max-height:700px) {
+
+  .content {
+    transform:
+      scale(.89);
+  }
+
+  .moon-wrap {
+    width:55px;
+    height:55px;
+  }
+
+  .timer {
+    margin-top:18px;
+  }
+
+  .timer-card {
+    height:72px;
+  }
+
+  .date-row {
+    margin-top:15px;
+  }
+
+  .quote {
+    margin-top:12px;
+  }
+}
+
+
+/* tablets */
+
+@media(min-width:601px) and (max-width:1100px) {
+
+  .content {
+    width:85%;
+  }
+}
+
+
+/* 2K / 4K */
+
+@media(min-width:1800px) {
+
+  .content {
+    transform:scale(1.15);
+  }
+
+  .moon-wrap {
+    width:140px;
+    height:140px;
+  }
+}
+
+
+/* 8K / huge displays */
+
+@media(min-width:3000px) {
+
+  .content {
+    transform:scale(1.5);
+  }
+
+  .moon-wrap {
+    width:190px;
+    height:190px;
+  }
+}
+
+
+/* reduced animation */
+
+@media(prefers-reduced-motion:reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+  }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<main class="hero" id="hero">
+
+
+  <div class="sky-glow"></div>
+
+
+  <!-- STARS -->
+
+  <div id="stars"></div>
+
+
+  <!-- SHOOTING STARS -->
+
+  <div class="shooting-star"></div>
+
+  <div class="shooting-star two"></div>
+
+
+  <!-- MOON -->
+
+  <div class="moon-wrap">
+
+    <div class="moon-aura"></div>
+
+    <div class="moon"></div>
+
+  </div>
+
+
+  <!-- CLOUDS -->
+
+  <div class="cloud one"></div>
+
+  <div class="cloud two"></div>
+
+
+  <!-- LANDSCAPE -->
+
+  <div class="landscape">
+
+    <div class="mountain-back"></div>
+
+    <div class="mountain-front"></div>
+
+  </div>
+
+
+  <!-- CITY LIGHTS -->
+
+  <div id="city"></div>
+
+
+  <!-- TERRACE -->
+
+  <div class="floor"></div>
+
+
+  <!-- LEFT DECORATION -->
+
+  <div class="plant left">
+
+    <div class="branch"></div>
+
+    <span
+      class="leaf"
+      style="
+      left:75px;
+      bottom:65px;
+      transform:rotate(22deg)"
+    ></span>
+
+    <span
+      class="leaf"
+      style="
+      left:103px;
+      bottom:110px;
+      transform:rotate(57deg)"
+    ></span>
+
+    <span
+      class="leaf"
+      style="
+      left:127px;
+      bottom:154px;
+      transform:rotate(20deg)"
+    ></span>
+
+    <span
+      class="leaf"
+      style="
+      left:147px;
+      bottom:198px;
+      transform:rotate(68deg)"
+    ></span>
+
+    <span
+      class="rose"
+      style="
+      left:67px;
+      bottom:22px"
+    ></span>
+
+    <span
+      class="rose"
+      style="
+      left:108px;
+      bottom:50px;
+      transform:scale(.78)"
+    ></span>
+
+    <span
+      class="rose"
+      style="
+      left:141px;
+      bottom:88px;
+      transform:scale(.62)"
+    ></span>
+
+  </div>
+
+
+  <!-- RIGHT DECORATION -->
+
+  <div class="plant right">
+
+    <div class="branch"></div>
+
+    <span
+      class="leaf"
+      style="
+      left:75px;
+      bottom:65px;
+      transform:rotate(22deg)"
+    ></span>
+
+    <span
+      class="leaf"
+      style="
+      left:103px;
+      bottom:110px;
+      transform:rotate(57deg)"
+    ></span>
+
+    <span
+      class="leaf"
+      style="
+      left:127px;
+      bottom:154px;
+      transform:rotate(20deg)"
+    ></span>
+
+    <span
+      class="leaf"
+      style="
+      left:147px;
+      bottom:198px;
+      transform:rotate(68deg)"
+    ></span>
+
+    <span
+      class="rose"
+      style="
+      left:67px;
+      bottom:22px"
+    ></span>
+
+    <span
+      class="rose"
+      style="
+      left:108px;
+      bottom:50px;
+      transform:scale(.78)"
+    ></span>
+
+  </div>
+
+
+  <!-- LANTERNS -->
+
+  <div class="lantern left">
+    <span class="flame"></span>
+  </div>
+
+  <div class="lantern right">
+    <span class="flame"></span>
+  </div>
+
+
+  <!-- MAIN CONTENT -->
+
+  <section class="content">
+
+
+    <p class="eyebrow">
+      A Moment Worth Waiting For
+    </p>
+
+
+    <h1 class="title">
+
+      A Special Day
+
+      <br><br>
+
+      <span>
+        Is Coming...
+      </span>
+
+    </h1>
+
+
+    <div class="ornament">
+
+      <span class="ornament-line"></span>
+
+      <span class="diamond"></span>
+
+      <span class="ornament-line right"></span>
+
+    </div>
+
+
+    <p class="subtitle">
+
+      For Someone Truly Amazing
+
+    </p>
+
+
+    <!-- COUNTDOWN -->
+
+    <div class="timer">
+
+
+      <div class="timer-card">
+
+        <span
+          class="number"
+          id="days"
+        >
+          00
+        </span>
+
+        <span class="label">
+          Days
+        </span>
+
+      </div>
+
+
+      <div class="timer-card">
+
+        <span
+          class="number"
+          id="hours"
+        >
+          00
+        </span>
+
+        <span class="label">
+          Hours
+        </span>
+
+      </div>
+
+
+      <div class="timer-card">
+
+        <span
+          class="number"
+          id="minutes"
+        >
+          00
+        </span>
+
+        <span class="label">
+          Minutes
+        </span>
+
+      </div>
+
+
+      <div class="timer-card">
+
+        <span
+          class="number"
+          id="seconds"
+        >
+          00
+        </span>
+
+        <span class="label">
+          Seconds
+        </span>
+
+      </div>
+
+
+    </div>
+
+
+    <!-- DATE -->
+
+    <div class="date-row">
+
+      <span class="date-line"></span>
+
+
+      <p class="date">
+
+        <span class="heart">
+          ♡
+        </span>
+
+        22 NOVEMBER 2026
+
+      </p>
+
+
+      <span class="date-line right"></span>
+
+    </div>
+
+
+    <!-- TEXT -->
+
+    <p class="quote">
+
+      “Some people make ordinary days special,
+
+      <br>
+
+      but
+
+      <span>
+        your day
+      </span>
+
+      is going to be extraordinary...”
+
+    </p>
+
+
+  </section>
+
+
+  <div class="vignette"></div>
+
+
+</main>
+
+
+<!-- TRANSITION BEFORE HOME.HTML -->
+
+<div
+  class="transition-screen"
+  id="transitionScreen"
+>
+
+  <p class="transition-text">
+
+    The wait is over...
+
+  </p>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   NATURAL STAR GENERATOR
+========================================================= */
+
+const starsContainer =
+  document.getElementById("stars");
+
+
+const starColors = [
+
+  "#ffffff",
+
+  "#f3f6ff",
+
+  "#dfe9ff",
+
+  "#f5f1e8",
+
+  "#eadfc8"
+
+];
+
+
+const starCount =
+
+  window.innerWidth <= 600
+
+  ? 100
+
+  : 175;
+
+
+for (
+  let i = 0;
+  i < starCount;
+  i++
+) {
+
+  const star =
+    document.createElement("span");
+
+
+  star.className =
+    "star";
+
+
+  const random =
+    Math.random();
+
+
+  let size;
+
+
+  if (random < .84) {
+
+    size =
+      Math.random() * .75 + .35;
+
+  }
+
+  else if (random < .97) {
+
+    size =
+      Math.random() * 1 + .8;
+
+  }
+
+  else {
+
+    size =
+      Math.random() * 1.2 + 1.4;
+
+    star.classList.add(
+      "bright"
+    );
+
+  }
+
+
+  const color =
+
+    starColors[
+
+      Math.floor(
+        Math.random()
+        *
+        starColors.length
+      )
+
+    ];
+
+
+  star.style.width =
+    size + "px";
+
+
+  star.style.height =
+    size + "px";
+
+
+  star.style.left =
+    Math.random() * 100 + "%";
+
+
+  star.style.top =
+    Math.random() * 72 + "%";
+
+
+  star.style.setProperty(
+    "--color",
+    color
+  );
+
+
+  star.style.setProperty(
+    "--opacity",
+    (
+      Math.random() * .55 + .25
+    )
+  );
+
+
+  star.style.setProperty(
+    "--glow",
+    (
+      size * 2.5
+    )
+    +
+    "px"
+  );
+
+
+  star.style.setProperty(
+    "--duration",
+    (
+      Math.random() * 5 + 4
+    )
+    +
+    "s"
+  );
+
+
+  star.style.setProperty(
+    "--delay",
+    (
+      Math.random() * -8
+    )
+    +
+    "s"
+  );
+
+
+  starsContainer.appendChild(
+    star
+  );
+
+}
+
+
+/* =========================================================
+   DISTANT CITY LIGHTS
+========================================================= */
+
+const city =
+  document.getElementById("city");
+
+
+for (
+  let i = 0;
+  i < 45;
+  i++
+) {
+
+  const light =
+    document.createElement("span");
+
+
+  light.className =
+    "city-light";
+
+
+  light.style.left =
+    Math.random() * 100 + "%";
+
+
+  light.style.bottom =
+    Math.random() * 45 + "px";
+
+
+  light.style.opacity =
+    Math.random() * .5 + .15;
+
+
+  city.appendChild(
+    light
+  );
+
+}
+
+
+/* =========================================================
+   COUNTDOWN
+
+   Birthday:
+   22 November 2026
+   12:00 AM
+
+   Pakistan:
+   UTC +05:00
+========================================================= */
+
+
+const birthdayDate =
+
+  new Date(
+    "2026-11-22T00:00:00+05:00"
+  ).getTime();
+
+
+const days =
+  document.getElementById(
+    "days"
+  );
+
+
+const hours =
+  document.getElementById(
+    "hours"
+  );
+
+
+const minutes =
+  document.getElementById(
+    "minutes"
+  );
+
+
+const seconds =
+  document.getElementById(
+    "seconds"
+  );
+
+
+const transitionScreen =
+
+  document.getElementById(
+    "transitionScreen"
+  );
+
+
+let redirectStarted =
+  false;
+
+
+/* Number formatting */
+
+function format(number) {
+
+  return String(number)
+    .padStart(2,"0");
+
+}
+
+
+/* =========================================================
+   REDIRECT TO HOME.HTML
+========================================================= */
+
+function openBirthdayWebsite() {
+
+
+  if (redirectStarted) {
+    return;
+  }
+
+
+  redirectStarted =
+    true;
+
+
+  /*
+     First show cinematic black transition.
+  */
+
+  transitionScreen
+    .classList
+    .add("show");
+
+
+  /*
+     Then automatically open home.html.
+
+     home.html must be in the SAME folder
+     as index.html.
+  */
+
+  setTimeout(() => {
+
+    window.location.replace(
+      "home.html"
+    );
+
+  }, 1800);
+
+}
+
+
+/* =========================================================
+   UPDATE COUNTDOWN
+========================================================= */
+
+function updateCountdown() {
+
+
+  /*
+     Real current device timestamp.
+  */
+
+  const now =
+    Date.now();
+
+
+  const remaining =
+    birthdayDate - now;
+
+
+  /*
+     Birthday reached.
+  */
+
+  if (
+    remaining <= 0
+  ) {
+
+
+    days.textContent =
+      "00";
+
+
+    hours.textContent =
+      "00";
+
+
+    minutes.textContent =
+      "00";
+
+
+    seconds.textContent =
+      "00";
+
+
+    clearInterval(
+      countdownInterval
+    );
+
+
+    openBirthdayWebsite();
+
+
+    return;
+
+  }
+
+
+  const oneSecond =
+    1000;
+
+
+  const oneMinute =
+    oneSecond * 60;
+
+
+  const oneHour =
+    oneMinute * 60;
+
+
+  const oneDay =
+    oneHour * 24;
+
+
+  const remainingDays =
+
+    Math.floor(
+      remaining / oneDay
+    );
+
+
+  const remainingHours =
+
+    Math.floor(
+      (
+        remaining % oneDay
+      )
+      /
+      oneHour
+    );
+
+
+  const remainingMinutes =
+
+    Math.floor(
+      (
+        remaining % oneHour
+      )
+      /
+      oneMinute
+    );
+
+
+  const remainingSeconds =
+
+    Math.floor(
+      (
+        remaining % oneMinute
+      )
+      /
+      oneSecond
+    );
+
+
+  days.textContent =
+    format(
+      remainingDays
+    );
+
+
+  hours.textContent =
+    format(
+      remainingHours
+    );
+
+
+  minutes.textContent =
+    format(
+      remainingMinutes
+    );
+
+
+  seconds.textContent =
+    format(
+      remainingSeconds
+    );
+
+}
+
+
+/*
+   Run immediately when page opens.
+   Declare the interval first so that opening the page
+   after the birthday does not trigger a TDZ error.
+*/
+
+let countdownInterval = null;
+
+updateCountdown();
+
+
+/*
+   Then update every second only if the redirect has not started.
+*/
+
+if (!redirectStarted) {
+  countdownInterval = setInterval(
+    updateCountdown,
+    1000
+  );
+}
+
+</script>
+
+
+</body>
+</html>
